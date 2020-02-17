@@ -18,5 +18,17 @@ def signup():
 		add_user(Username,Email,Password)
 		return render_template ('hometest.html')
 
-def delete_user_by():
-    return session.query().delete()
+def update_lab_status(name, finished_lab):
+
+   users_object = session.query(
+       Student).filter_by(
+       name=name).first()
+   user_object.finished_lab = finished_lab
+   session.commit()
+
+
+def delete_user(their_name):
+
+   session.query(User).filter_by(
+       username=their_username).delete()
+   session.commit()
